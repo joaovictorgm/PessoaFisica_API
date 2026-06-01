@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pessoaFisica-db
+    password: 1234
+    username: postgres
+    driverClassName: org.postgresql.Driver
