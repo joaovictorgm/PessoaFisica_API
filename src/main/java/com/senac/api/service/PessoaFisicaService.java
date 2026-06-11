@@ -4,6 +4,7 @@ import com.senac.api.dtos.PessoaFisicaDTO;
 import com.senac.api.entidades.PessoaFisica;
 import com.senac.api.repositorio.PessoaFisicaRepositorio;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class PessoaFisicaService {
 
         return pessoaFisicaRepositorio.save(pessoaFisicaPersist);
     }
+
+    public  PessoaFisica buscar (Long id) {
+        return  pessoaFisicaRepositorio.findById(id).orElseThrow(() -> new RuntimeException("Pessoa Fisica não encontrada"));}
 
     public PessoaFisica atualizar(Long id, PessoaFisicaDTO pessoa) {
 
@@ -52,9 +56,7 @@ public class PessoaFisicaService {
         return pessoaFisicaRepositorio.findAll();
     }
 
-    public PessoaFisica buscar(Long id){
-        return pessoaFisicaRepositorio.findById(id).orElseThrow(()->new RuntimeException ("Pessoa fisica não encontrada"));
-    }
+
     private PessoaFisica pessoaFisicaDTOParaPessoaFisica(PessoaFisicaDTO entrada) {
         PessoaFisica saida = new PessoaFisica();
         saida.setNome(entrada.getNome());

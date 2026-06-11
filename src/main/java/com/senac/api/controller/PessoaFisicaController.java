@@ -26,6 +26,16 @@ public class PessoaFisicaController {
         return ResponseEntity.ok(pessoaFisicaService.listar());
     }
 
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<?> buscar(@PathVariable Long id){
+        try{
+            return ResponseEntity.ok(pessoaFisicaService.buscar(id));
+        } catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(null);
+        }catch (Exception e) {
+            return ResponseEntity.internalServerError().body(null);
+        }
+    }
     @PostMapping("/criar")
     public ResponseEntity<PessoaFisica> criar(@RequestBody PessoaFisicaDTO pessooa) {
         try {
